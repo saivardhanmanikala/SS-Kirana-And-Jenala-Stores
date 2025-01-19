@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - SS Kirana and General Stores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        nav {
+            text-align: center;
+            margin-top: 15px;
+        }
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            color: #16a085;
+        }
+        .category {
+            margin: 20px 0;
+        }
+        .category h2 {
+            background-color: #34495e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product {
+            display: inline-block;
+            width: 22%;
+            margin: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 15px;
+        }
+        .product img {
+            width: 80%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .product h3 {
+            color: #333;
+        }
+        .product p {
+            color: #555;
+        }
+        .product .price {
+            font-size: 1.2em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .quantity {
+            margin-top: 10px;
+        }
+        .quantity input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+        }
+        .product button {
+            background-color: #16a085;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .product button:hover {
+            background-color: #1abc9c;
+        }
+        .floating-cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #16a085;
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 1.8em;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        .floating-cart:hover {
+            background-color: #1abc9c;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SS Kirana and General Stores</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="products.html">Products</a>
+        </nav>
+    </header>
+
+    <div class="category">
+        <h2>Groceries</h2>
+        <div class="product" id="product1">
+            <img src="sugar.jpg" alt="Sugar">
+            <h3>Sugar (1 kg)</h3>
+            <p>Sweet, high-quality sugar for daily use.</p>
+            <p class="price">₹40</p>
+            <div class="quantity">
+                <label for="quantity1">Quantity:</label>
+                <input type="number" id="quantity1" name="quantity" min="1" value="1">
+            </div>
+            <button onclick="addToCart('Sugar (1 kg)', 40, 'sugar.jpg', document.getElementById('quantity1').value)">Add to Cart</button>
+        </div>
+        <div class="product" id="product2">
+            <img src="salt.jpg" alt="Salt">
+            <h3>Salt (1 kg)</h3>
+            <p>Pure and refined salt for all your cooking needs.</p>
+            <p class="price">₹20</p>
+            <div class="quantity">
+                <label for="quantity2">Quantity:</label>
+                <input type="number" id="quantity2" name="quantity" min="1" value="1">
+            </div>
+            <button onclick="addToCart('Salt (1 kg)', 20, 'salt.jpg', document.getElementById('quantity2').value)">Add to Cart</button>
+        </div>
+        <div class="product" id="product3">
+            <img src="eggs.jpg" alt="Eggs">
+            <h3>Eggs (Pack of 6)</h3>
+            <p>Fresh, nutritious eggs for all your meals.</p>
+            <p class="price">₹60</p>
+            <div class="quantity">
+                <label for="quantity3">Quantity:</label>
+                <input type="number" id="quantity3" name="quantity" min="1" value="1">
+            </div>
+            <button onclick="addToCart('Eggs (Pack of 6)', 60, 'eggs.jpg', document.getElementById('quantity3').value)">Add to Cart</button>
+        </div>
+        <div class="product" id="product4">
+            <img src="rice.jpg" alt="Rice">
+            <h3>Rice (5 kg)</h3>
+            <p>High-quality rice for your everyday meals.</p>
+            <p class="price">₹250</p>
+            <div class="quantity">
+                <label for="quantity4">Quantity:</label>
+                <input type="number" id="quantity4" name="quantity" min="1" value="1">
+            </div>
+            <button onclick="addToCart('Rice (5 kg)', 250, 'rice.jpg', document.getElementById('quantity4').value)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="floating-cart" onclick="window.location.href='cart.html'">
+        🛒
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SS Kirana and General Stores. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to add product to cart
+        function addToCart(name, price, image, quantity) {
+            // Create cart item object
+            const cartItem = {
+                name: name,
+                price: price,
+                quantity: quantity,
+                image: image
+            };
+
+            // Get cart items from localStorage (or initialize it if empty)
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add new item to cart
+            cart.push(cartItem);
+
+            // Save updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert(`${name} has been added to the cart.`);
+        }
+    </script>
+</body>
+</html>
